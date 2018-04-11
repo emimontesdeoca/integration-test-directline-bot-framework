@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Bot.Connector;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using Microsoft.CodeAnalysis.Scripting;
 
 namespace IntegrationTestBotFramework
 {
@@ -47,6 +44,24 @@ namespace IntegrationTestBotFramework
                     /// CONSEGUIR LA ULTIMA (RESPUESTA)
                     var latestResponse = getLastActivity.activities[Int32.Parse(getLastActivity.watermark)];
 
+                    //var rightside = entry.Assert.Split(new string[] { "== " }, StringSplitOptions.None)[1];
+
+                    var eval = "entry.Request.Text == entry.Response.Text";
+                    var splitarr = eval.Split(new string[] { " == " }, StringSplitOptions.None);
+
+
+                    var options = ScriptOptions.Default.AddReferences(typeof(Activity).Assembly);
+
+                    var left = CSharpScript.EvaluateAsync(splitarr[0]);
+                    var right = CSharpScript.EvaluateAsync(splitarr[1]);
+
+                    var a = CSharpScript.EvaluateAsync<bool>(eval, options);
+
+                    object result = await CSharpScript.EvaluateAsync("entry.Request.Text == entry.Response.Text");
+
+                    //String propName = "Text";
+                    //PropertyInfo pi = someObject.GetType().GetProperty(propName);
+                    //pi.SetValue(someObject, "New Value", new Object[0]);
                 }
             }
 

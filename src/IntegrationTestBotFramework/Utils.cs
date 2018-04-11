@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
 using Newtonsoft.Json;
+using Microsoft.CSharp;
+using System.CodeDom.Compiler;
+using System.Reflection;
 
 namespace IntegrationTestBotFramework
 {
@@ -40,5 +43,6 @@ namespace IntegrationTestBotFramework
             return JsonConvert.DeserializeObject<T>(serializedResult);
 
         }
+
     }
 }

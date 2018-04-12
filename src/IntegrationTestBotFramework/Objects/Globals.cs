@@ -2,6 +2,9 @@
 
 namespace IntegrationTestBotFramework.Objects
 {
+    /// <summary>
+    /// Object to pass parameters to Roslyn compiler
+    /// </summary>
     public class Globals
     {
         /// <summary>

@@ -14,34 +14,57 @@ namespace IntegrationTestBotFramework
 {
     public class Utils
     {
+        /// <summary>
+        /// Uploads to an URL and gets result
+        /// </summary>
+        /// <typeparam name="T">Type of object you are receiving</typeparam>
+        /// <param name="bearer">Token</param>
+        /// <param name="url">Url</param>
+        /// <param name="serializedJson">Serialized JSON to send</param>
+        /// <returns></returns>
         public static T uploadString<T>(string bearer, string url, string serializedJson)
         {
             string serializedResult = "";
+
+            /// Webclient
             using (var client = new WebClient())
             {
+                /// Add headers
                 client.Headers.Add("Content-Type", "application/json");
                 client.Headers.Add("Authorization", $"Bearer {bearer}");
 
+                /// Upload string
                 serializedResult = client.UploadString(url, serializedJson);
             }
 
+            /// Get result and return it as an object
             return JsonConvert.DeserializeObject<T>(serializedResult);
-
         }
 
+        /// <summary>
+        /// Downloads from URL
+        /// </summary>
+        /// <typeparam name="T">Type of object you are receiving</typeparam>
+        /// <param name="bearer">Token</param>
+        /// <param name="url">Url</param>
+        /// <returns></returns>
         public static T downloadString<T>(string bearer, string url)
         {
             string serializedResult = "";
+
+            /// Webclient
             using (var client = new WebClient())
             {
+                /// Add headers
                 client.Headers.Add("Content-Type", "application/json");
                 client.Headers.Add("Authorization", $"Bearer {bearer}");
 
+                /// Download string
                 serializedResult = client.DownloadString(url);
             }
 
+            /// Get result and return it as an object
             return JsonConvert.DeserializeObject<T>(serializedResult);
-
         }
 
     }

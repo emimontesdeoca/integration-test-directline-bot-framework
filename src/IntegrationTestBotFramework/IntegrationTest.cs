@@ -21,8 +21,7 @@ namespace IntegrationTestBotFramework
 
             foreach (var entry in data.Entries)
             {
-
-                /// Arrange
+                /// Arrange with current requested values
                 string token, newToken, conversationId;
 
                 if (entry.Request.Type == ActivityTypes.Message)
@@ -35,7 +34,7 @@ namespace IntegrationTestBotFramework
                     /// 2 -Create a new conversation
                     var createdConversation = Utils.uploadString<DirectLineAuth>(token, data.DirectLineConversationEndpoint, "");
 
-                    /// This returns a new token and a conversationId
+                    // This returns a new token and a conversationId
                     newToken = createdConversation.token;
                     conversationId = createdConversation.conversationId;
 
@@ -49,17 +48,14 @@ namespace IntegrationTestBotFramework
                     /// 5 - Get the latest activity which is the response we should be expecting
                     var latestResponse = getLastActivity.activities[Int32.Parse(getLastActivity.watermark)];
 
-                    /// Arrange
+                    /// Arrange with new values
                     var globals = new Objects.Globals { Request = entry.Response, Response = latestResponse };
 
                     /// Assert
                     Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
                 }
             }
-
             await Task.CompletedTask;
         }
-
-
     }
 }

@@ -178,9 +178,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\ActivityResponse.cs" />
-    <Compile Include="Objects\DirectLineAuth.cs" />
+    <Compile Include="Auth\DirectLineAuth.cs" />
     <Compile Include="IntegrationTest.cs" />
     <Compile Include="Objects\Globals.cs" />
+    <Compile Include="Objects\TestEntryFlow.cs" />
+    <Compile Include="Objects\TestEntryFlowCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\TestEntry.cs" />
     <Compile Include="Objects\TestEntriesCollection.cs" />
@@ -194,9 +196,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Auth\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

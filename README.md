@@ -8,9 +8,9 @@ This solution works for single and flow cases, single cases being where the user
 For a guide about all the working flow for this integration test, objects explanation and how everything is done, check out my blog posts.
 
 [Integration test using Microsoft's Bot Framework and DirectLine (1)](https://emimontesdeoca.github.io/2018/04/24/integration-test-bot-framework-1/)<br>
-[Integration test using Microsoft's Bot Framework and DirectLine (2)](https://emimontesdeoca.github.io/2018/04/24/integration-test-bot-framework-1/)<br>
-[Integration test using Microsoft's Bot Framework and DirectLine (3)](https://emimontesdeoca.github.io/2018/04/24/integration-test-bot-framework-1/)<br>
-[Integration test using Microsoft's Bot Framework and DirectLine for flow cases](https://emimontesdeoca.github.io/2018/04/25/integration-test-bot-framework-with-flow-cases-1/)
+[Integration test using Microsoft's Bot Framework and DirectLine (2)](https://emimontesdeoca.github.io/2018/04/24/integration-test-bot-framework-2/)<br>
+[Integration test using Microsoft's Bot Framework and DirectLine (3)](https://emimontesdeoca.github.io/2018/04/24/integration-test-bot-framework-3/)<br>
+[Integration test using Microsoft's Bot Framework and DirectLine for flow cases](https://emimontesdeoca.github.io/2018/04/25/integration-test-bot-framework-with-flow-cases/)
 
 ## Set up the enviorment
 

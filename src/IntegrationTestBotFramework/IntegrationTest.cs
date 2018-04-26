@@ -22,6 +22,8 @@ namespace IntegrationTestBotFramework
 
             // Assert
             Assert.IsNotNull(data);
+
+            await Task.CompletedTask;
         }
 
         [TestMethod]
@@ -35,6 +37,8 @@ namespace IntegrationTestBotFramework
 
             // Assert
             Assert.IsNotNull(data);
+
+            await Task.CompletedTask;
         }
 
         [TestMethod]
@@ -51,6 +55,8 @@ namespace IntegrationTestBotFramework
 
             // Assert
             Assert.IsNotNull(token);
+
+            await Task.CompletedTask;
         }
 
         [TestMethod]

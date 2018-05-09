@@ -16,6 +16,11 @@ namespace IntegrationTestBotFramework.Objects
         [JsonProperty("name")]
         public string Name { get; set; }
         /// <summary>
+        /// Entry description
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        /// <summary>
         /// Activity requested by the entry
         /// </summary>
         [JsonProperty("requests")]

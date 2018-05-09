@@ -103,13 +103,26 @@ namespace IntegrationTestBotFramework
                     var globals = new Objects.Globals { Request = entry.Response, Response = latestResponse };
 
                     /// Assert
-                    Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
+
+                    bool res = await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals);
+
+                    /// DEBUG MODE
+                    if (res)
+                    {
+                        var a = "";
+                    }
+                    else
+                    {
+                        var a = "";
+                    }
+
+                    Assert.IsTrue(res);
                 }
             }
             await Task.CompletedTask;
         }
 
-
+        [TestMethod]
         public async Task ShouldTestFlowCases()
         {
             // Load entries from file
@@ -159,8 +172,23 @@ namespace IntegrationTestBotFramework
                 var globals = new Objects.Globals { Request = entry.Response, Response = latestResponse };
 
 
+                bool res = await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals);
+
+                /// DEBUG MODE
+                if (res)
+                {
+                    var a = "";
+                }
+                else
+                {
+                    var a = "";
+                }
+
+                Assert.IsTrue(res);
+
+
                 /// Assert
-                Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
+                //Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
             }
 
             await Task.CompletedTask;

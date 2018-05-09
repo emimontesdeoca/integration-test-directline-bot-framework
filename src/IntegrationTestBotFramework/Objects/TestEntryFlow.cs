@@ -26,11 +26,6 @@ namespace IntegrationTestBotFramework.Objects
         [JsonProperty("enabled")]
         public bool Enabled { get; set; }
         /// <summary>
-        /// If entry has LUIS integration
-        /// </summary>
-        [JsonProperty("luis")]
-        public bool Luis { get; set; }
-        /// <summary>
         /// Activity requested by the entry
         /// </summary>
         [JsonProperty("requests")]

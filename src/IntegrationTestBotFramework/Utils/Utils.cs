@@ -29,6 +29,9 @@ namespace IntegrationTestBotFramework
             /// Webclient
             using (var client = new WebClient())
             {
+                //byte[] sendbytes = Encoding.Default.GetBytes(serializedJson);
+                //serializedJson = Encoding.UTF8.GetString(sendbytes);
+
                 /// Add headers
                 client.Headers.Add("Content-Type", "application/json");
                 client.Headers.Add("Authorization", $"Bearer {bearer}");

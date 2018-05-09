@@ -109,7 +109,7 @@ namespace IntegrationTestBotFramework
             await Task.CompletedTask;
         }
 
-        [TestMethod]
+
         public async Task ShouldTestFlowCases()
         {
             // Load entries from file
@@ -117,7 +117,7 @@ namespace IntegrationTestBotFramework
 
             // Deserialize to object
             var data = JsonConvert.DeserializeObject<TestEntryFlowCollection>(path);
- 
+
             /// Flow: Arrange -> Act -> arrange -> assert
             foreach (TestEntryFlow entry in data.Entries)
             {
@@ -157,6 +157,7 @@ namespace IntegrationTestBotFramework
 
                 /// Arrange with new values
                 var globals = new Objects.Globals { Request = entry.Response, Response = latestResponse };
+
 
                 /// Assert
                 Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));

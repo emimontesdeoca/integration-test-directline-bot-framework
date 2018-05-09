@@ -61,6 +61,9 @@ namespace IntegrationTestBotFramework
 
                 /// Download string
                 serializedResult = client.DownloadString(url);
+
+                byte[] bytes = Encoding.Default.GetBytes(serializedResult);
+                serializedResult = Encoding.UTF8.GetString(bytes);
             }
 
             /// Get result and return it as an object

@@ -8,6 +8,8 @@ using System.Net;
 using Newtonsoft.Json;
 using Microsoft.CSharp;
 using System.CodeDom.Compiler;
+using System.Web;
+using System.IO;
 using System.Reflection;
 
 namespace IntegrationTestBotFramework
@@ -29,20 +31,22 @@ namespace IntegrationTestBotFramework
             /// Webclient
             using (var client = new WebClient())
             {
-                //byte[] sendbytes = Encoding.Default.GetBytes(serializedJson);
-                //serializedJson = Encoding.UTF8.GetString(sendbytes);
+                /// Looks like it goes wrong when uplading UTF8 words
+                string ansistring = Encoding.ASCII.GetString(Encoding.ASCII.GetBytes(serializedJson));
 
-                /// Add headers
-                client.Headers.Add("Content-Type", "application/json");
-                client.Headers.Add("Authorization", $"Bearer {bearer}");
+                try
+                {
+                    /// Add headers
+                    client.Headers.Add("Content-Type", "application/json");
+                    client.Headers.Add("Authorization", $"Bearer {bearer}");
 
-                /// Upload string
-                serializedResult = client.UploadString(url, serializedJson);
-
-                /// Fix for UTF8 when downloading string, strage characters 
-                /// appear if this is not done
-                byte[] bytes = Encoding.Default.GetBytes(serializedResult);
-                serializedResult = Encoding.UTF8.GetString(bytes);
+                    /// Upload string
+                    serializedResult = client.UploadString(url, ansistring);
+                }
+                catch (Exception e)
+                {
+                    string a = e.Message;
+                }
             }
 
             /// Get result and return it as an object

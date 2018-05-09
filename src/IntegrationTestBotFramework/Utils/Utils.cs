@@ -62,6 +62,8 @@ namespace IntegrationTestBotFramework
                 /// Download string
                 serializedResult = client.DownloadString(url);
 
+                /// Fix for UTF8 when downloading string, strage characters 
+                /// appear if this is not done
                 byte[] bytes = Encoding.Default.GetBytes(serializedResult);
                 serializedResult = Encoding.UTF8.GetString(bytes);
             }

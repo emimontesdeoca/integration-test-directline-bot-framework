@@ -21,6 +21,16 @@ namespace IntegrationTestBotFramework
         [JsonProperty("description")]
         public string Description { get; set; }
         /// <summary>
+        /// Entry status
+        /// </summary>
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+        /// <summary>
+        /// If entry has LUIS integration
+        /// </summary>
+        [JsonProperty("luis")]
+        public bool Luis { get; set; }
+        /// <summary>
         /// Activity requested by the entry
         /// </summary>
         [JsonProperty("request")]

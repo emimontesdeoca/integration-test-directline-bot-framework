@@ -35,6 +35,11 @@ namespace IntegrationTestBotFramework
 
                 /// Upload string
                 serializedResult = client.UploadString(url, serializedJson);
+
+                /// Fix for UTF8 when downloading string, strage characters 
+                /// appear if this is not done
+                byte[] bytes = Encoding.Default.GetBytes(serializedResult);
+                serializedResult = Encoding.UTF8.GetString(bytes);
             }
 
             /// Get result and return it as an object

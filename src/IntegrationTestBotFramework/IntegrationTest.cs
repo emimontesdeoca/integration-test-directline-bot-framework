@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
 using IntegrationTestBotFramework.Objects;
+using System.Text;
 
 namespace IntegrationTestBotFramework
 {

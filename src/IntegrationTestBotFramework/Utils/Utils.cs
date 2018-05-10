@@ -32,7 +32,6 @@ namespace IntegrationTestBotFramework
             using (var client = new WebClient())
             {
                 /// Looks like it goes wrong when uplading UTF8 words
-                string ansistring = Encoding.ASCII.GetString(Encoding.ASCII.GetBytes(serializedJson));
 
                 try
                 {
@@ -41,7 +40,7 @@ namespace IntegrationTestBotFramework
                     client.Headers.Add("Authorization", $"Bearer {bearer}");
 
                     /// Upload string
-                    serializedResult = client.UploadString(url, ansistring);
+                    serializedResult = client.UploadString(url, Encoding.Default.GetString(Encoding.UTF8.GetBytes(serializedJson)));
                 }
                 catch (Exception e)
                 {

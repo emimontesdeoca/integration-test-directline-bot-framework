@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IntegrationTestBotFramework.Objects
 {
-    public class TestEntry
+    public class TestEntryFlowRecursive
     {
         /// <summary>
         /// Entry name
@@ -25,25 +25,11 @@ namespace IntegrationTestBotFramework.Objects
         /// </summary>
         [JsonProperty("enabled")]
         public bool Enabled { get; set; }
+
         /// <summary>
-        /// If entry has LUIS integration
+        /// Entries for this type of testing
         /// </summary>
-        [JsonProperty("luis")]
-        public bool Luis { get; set; }
-        /// <summary>
-        /// Activity requested by the entry
-        /// </summary>
-        [JsonProperty("request")]
-        public Activity Request { get; set; }
-        /// <summary>
-        /// Activity response expected by the entry
-        /// </summary>
-        [JsonProperty("response")]
-        public Activity Response { get; set; }
-        /// <summary>
-        /// Assert value in string
-        /// </summary>
-        [JsonProperty("assert")]
-        public string Assert { get; set; }
+        [JsonProperty("entries")]
+        public List<TestEntryFlowRecursiveObjectCollection> Entries { get; set; }
     }
 }

@@ -1,11 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using IntegrationTestBotFramework.Objects;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IntegrationTestBotFramework
+namespace IntegrationTestBotFramework.Collections
 {
     /// <summary>
     /// Object to parse from the file

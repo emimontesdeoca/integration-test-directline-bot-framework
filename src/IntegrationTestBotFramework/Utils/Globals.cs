@@ -1,6 +1,6 @@
 ﻿using Microsoft.Bot.Connector;
 
-namespace IntegrationTestBotFramework.Objects
+namespace IntegrationTestBotFramework.Utils
 {
     /// <summary>
     /// Object to pass parameters to Roslyn compiler

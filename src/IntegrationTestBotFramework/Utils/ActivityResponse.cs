@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegrationTestBotFramework
+namespace IntegrationTestBotFramework.Utils
 {
     /// <summary>
     /// Class for response when getting all activities

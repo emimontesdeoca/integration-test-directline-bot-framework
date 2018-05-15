@@ -30,7 +30,7 @@ namespace IntegrationTestBotFramework.Tests
                 Activity latestResponse = new Activity();
 
                 /// Just do Enabled cases
-                if (entry.Enabled)
+                if (entry.Mute)
                 {
                     /// Act for step
 

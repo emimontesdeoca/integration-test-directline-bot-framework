@@ -27,7 +27,7 @@ namespace IntegrationTestBotFramework.Tests
             foreach (TestEntry entry in data.Entries)
             {
                 /// Test only enabled entry
-                if (entry.Enabled)
+                if (entry.Mute)
                 {
                     /// Arrange with current requested values
                     string token, newToken, conversationId;

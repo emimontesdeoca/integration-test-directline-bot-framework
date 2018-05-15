@@ -23,8 +23,8 @@ namespace IntegrationTestBotFramework.Objects
         /// <summary>
         /// Entry status
         /// </summary>
-        [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
+        [JsonProperty("mute")]
+        public bool Mute { get; set; }
         /// <summary>
         /// If entry has LUIS integration
         /// </summary>

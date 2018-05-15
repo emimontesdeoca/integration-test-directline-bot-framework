@@ -51,7 +51,6 @@ namespace IntegrationTestBotFramework.Tests
                     {
                         if (step.Request.Type == ActivityTypes.Message)
                         {
-
                             /// Step
                             API.uploadString<DirectLineAuth>(newToken, directlineConversationActivitiesEndpoint, JsonConvert.SerializeObject(step));
 

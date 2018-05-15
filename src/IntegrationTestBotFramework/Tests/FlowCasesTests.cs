@@ -50,15 +50,16 @@ namespace IntegrationTestBotFramework.Tests
                     foreach (Activity step in entry.Requests)
                     {
                         if (step.Type == ActivityTypes.Message)
-
+                        {
                             /// Step
                             API.uploadString<DirectLineAuth>(newToken, directlineConversationActivitiesEndpoint, JsonConvert.SerializeObject(step));
 
-                        /// 4 - Get all activities, we get a List<activity> and a watermark
-                        var getLastActivity = API.downloadString<ActivityResponse>(newToken, directlineConversationActivitiesEndpoint);
+                            /// 4 - Get all activities, we get a List<activity> and a watermark
+                            var getLastActivity = API.downloadString<ActivityResponse>(newToken, directlineConversationActivitiesEndpoint);
 
-                        /// 5 - Get the latest activity which is the response we should be expecting
-                        latestResponse = getLastActivity.activities[Int32.Parse(getLastActivity.watermark)];
+                            /// 5 - Get the latest activity which is the response we should be expecting
+                            latestResponse = getLastActivity.activities[Int32.Parse(getLastActivity.watermark)];
+                        }
                     }
                 }
 

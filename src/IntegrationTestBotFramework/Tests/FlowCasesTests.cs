@@ -30,7 +30,7 @@ namespace IntegrationTestBotFramework.Tests
                 Activity latestResponse = new Activity();
 
                 /// Just do Enabled cases
-                if (entry.Mute)
+                if (!entry.Mute)
                 {
                     /// Act for step
 
@@ -70,19 +70,19 @@ namespace IntegrationTestBotFramework.Tests
                 bool res = await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals);
 
                 /// DEBUG MODE
-                //if (res)
-                //{
-                //    var a = "";
-                //}
-                //else
-                //{
-                //    var a = "";
-                //}
+                if (res)
+                {
+                    var a = "";
+                }
+                else
+                {
+                    var a = "";
+                }
 
-                //Assert.IsTrue(res);
+                Assert.IsTrue(res);
 
                 /// Assert
-                Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
+                //Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
 
             }
 

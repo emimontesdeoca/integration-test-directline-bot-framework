@@ -1,3 +1,5 @@
+# OUTDATED!
+
 # Integration test for Microsoft's Bot Framework using Direct Line channel
 
 This repository has a test solution in Visual Studio that does integration test for Microsoft's Bot Framework using the DirectLine channel.

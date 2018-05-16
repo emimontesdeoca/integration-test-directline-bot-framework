@@ -13,17 +13,17 @@ namespace IntegrationTestBotFramework.Objects
         /// <summary>
         /// Activity request to send
         /// </summary>
-        [JsonProperty("Request")]
+        [JsonProperty("request")]
         public Activity Request { get; set; }
         /// <summary>
         /// Response request to send
         /// </summary>
-        [JsonProperty("Response")]
+        [JsonProperty("response")]
         public Activity Response { get; set; }
         /// <summary>
         /// Assert in this case
         /// </summary>
-        [JsonProperty("Assert")]
+        [JsonProperty("assert")]
         public string Assert { get; set; }
     }
 }

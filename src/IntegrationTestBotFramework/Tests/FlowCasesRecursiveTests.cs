@@ -13,11 +13,11 @@ namespace IntegrationTestBotFramework.Tests
     [TestClass]
     public class FlowCasesRecursiveTests
     {
-        //[TestMethod]
+        [TestMethod]
         public async Task ShouldTestFlowRecursiveCases()
         {
             // Load entries from file
-            var path = System.IO.File.ReadAllText(Data.flowCasesJson);
+            var path = System.IO.File.ReadAllText(Data.flowCasesRecursiveJson);
 
             // Deserialize to object
             var data = JsonConvert.DeserializeObject<TestEntryFlowRecursiveCollection>(path);
@@ -30,7 +30,7 @@ namespace IntegrationTestBotFramework.Tests
                 Activity latestResponse = new Activity();
 
                 /// Just do Enabled cases
-                if (entry.Mute)
+                if (!entry.Mute)
                 {
                     /// Act for step
 
@@ -52,7 +52,7 @@ namespace IntegrationTestBotFramework.Tests
                         if (step.Request.Type == ActivityTypes.Message)
                         {
                             /// Step
-                            API.uploadString<DirectLineAuth>(newToken, directlineConversationActivitiesEndpoint, JsonConvert.SerializeObject(step));
+                            API.uploadString<DirectLineAuth>(newToken, directlineConversationActivitiesEndpoint, JsonConvert.SerializeObject(step.Request));
 
                             /// Only assert if asset is not null
                             if (!String.IsNullOrEmpty(step.Assert))
@@ -89,10 +89,6 @@ namespace IntegrationTestBotFramework.Tests
                         }
                     }
                 }
-
-
-
-
             }
 
             await Task.CompletedTask;

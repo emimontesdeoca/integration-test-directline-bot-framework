@@ -23,11 +23,10 @@ namespace IntegrationTestBotFramework.Tests
             var data = JsonConvert.DeserializeObject<TestEntriesCollection>(path);
 
             /// Flow: Arrange -> Act -> arrange -> assert
-
             foreach (TestEntry entry in data.Entries)
             {
                 /// Test only enabled entry
-                if (entry.Mute)
+                if (!entry.Mute)
                 {
                     /// Arrange with current requested values
                     string token, newToken, conversationId;
@@ -64,17 +63,17 @@ namespace IntegrationTestBotFramework.Tests
                         bool res = await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals);
 
                         /// DEBUG MODE
-                        //if (res)
-                        //{
-                        //    var a = "";
-                        //}
-                        //else
-                        //{
-                        //    var a = "";
-                        //}
+                        if (res)
+                        {
+                            var a = "";
+                        }
+                        else
+                        {
+                            var a = "";
+                        }
 
-                        //Assert.IsTrue(res);
-                        Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
+                        Assert.IsTrue(res);
+                        //Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(entry.Assert, globals: globals));
                     }
                 }
             }

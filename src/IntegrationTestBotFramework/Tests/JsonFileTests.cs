@@ -40,6 +40,20 @@ namespace IntegrationTestBotFramework.Tests
             await Task.CompletedTask;
         }
 
+        [TestMethod]
+        public async Task ShouldGetFlowRecursiveCasesFromFile()
+        {
+            // Load entries from file
+            var path = System.IO.File.ReadAllText(Data.flowCasesRecursiveJson);
+
+            // Deserialize to object
+            var data = JsonConvert.DeserializeObject<TestEntryFlowRecursiveCollection>(path);
+
+            // Assert
+            Assert.IsNotNull(data);
+
+            await Task.CompletedTask;
+        }
 
     }
 }

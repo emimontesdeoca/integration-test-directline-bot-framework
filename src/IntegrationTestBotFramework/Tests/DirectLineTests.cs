@@ -45,6 +45,24 @@ namespace IntegrationTestBotFramework.Tests
 
             await Task.CompletedTask;
         }
+
+        [TestMethod]
+        public async Task ShouldGetTokenFromDirectLineFlowRecursiveCases()
+        {
+            // Load entries from file
+            var path = System.IO.File.ReadAllText(Data.flowCasesRecursiveJson);
+
+            // Deserialize to object
+            var data = JsonConvert.DeserializeObject<TestEntriesCollection>(path);
+
+            // Get token using secret from DirectLine in BotFramework panel
+            var token = API.uploadString<DirectLineAuth>(data.Secret, data.DirectLineGenerateTokenEndpoint, "").token;
+
+            // Assert
+            Assert.IsNotNull(token);
+
+            await Task.CompletedTask;
+        }
     }
 
 

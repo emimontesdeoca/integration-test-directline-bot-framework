@@ -22,8 +22,6 @@ namespace IntegrationTestBotFramework.Utils
             /// Webclient
             using (var client = new WebClient())
             {
-                /// Looks like it goes wrong when uplading UTF8 words
-
                 try
                 {
                     /// Add headers

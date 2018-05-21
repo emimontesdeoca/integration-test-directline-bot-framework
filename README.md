@@ -1,4 +1,4 @@
-# OUTDATED!
+# OUTDATED DOCUMENTATION!
 
 # Integration test for Microsoft's Bot Framework using Direct Line channel
 

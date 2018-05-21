@@ -1,12 +1,13 @@
 ﻿using IntegrationTestBotFramework.Objects;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace IntegrationTestBotFramework.Collections
 {
-    /// <summary>
-    /// Object to parse from the file
-    /// </summary>
     public class TestEntriesCollection
     {
         /// <summary>
@@ -30,5 +31,4 @@ namespace IntegrationTestBotFramework.Collections
         [JsonProperty("entries")]
         public List<TestEntry> Entries { get; set; }
     }
-
 }

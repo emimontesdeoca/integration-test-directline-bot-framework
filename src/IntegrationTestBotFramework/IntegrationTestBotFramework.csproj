@@ -177,23 +177,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Collections\TestEntryFlowRecursiveCollection.cs" />
-    <Compile Include="Objects\TestEntryFlowRecursiveObjectCollection.cs" />
+    <Compile Include="Collections\TestEntriesCollection.cs" />
+    <Compile Include="Objects\TestSteps.cs" />
     <Compile Include="Tests\DirectLineTests.cs" />
-    <Compile Include="Tests\JsonFileTests.cs" />
-    <Compile Include="Tests\SingleCasesTests.cs" />
-    <Compile Include="Tests\FlowCasesTests.cs" />
-    <Compile Include="Tests\FlowCasesRecursiveTests.cs" />
+    <Compile Include="Tests\FileTests.cs" />
+    <Compile Include="Tests\IntegrationTests.cs" />
     <Compile Include="Utils\ActivityResponse.cs" />
     <Compile Include="Auth\DirectLineAuth.cs" />
     <Compile Include="Utils\Data.cs" />
     <Compile Include="Utils\Globals.cs" />
-    <Compile Include="Objects\TestEntryFlow.cs" />
-    <Compile Include="Collections\TestEntryFlowCollection.cs" />
-    <Compile Include="Objects\TestEntryFlowRecursive.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\TestEntry.cs" />
-    <Compile Include="Collections\TestEntriesCollection.cs" />
     <Compile Include="Utils\API.cs" />
   </ItemGroup>
   <ItemGroup>

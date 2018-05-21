@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IntegrationTestBotFramework.Objects
 {
-    public class TestEntryFlowRecursiveObjectCollection
+    public class TestSteps
     {
         /// <summary>
         /// Activity request to send

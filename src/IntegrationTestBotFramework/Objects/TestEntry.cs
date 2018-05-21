@@ -25,25 +25,11 @@ namespace IntegrationTestBotFramework.Objects
         /// </summary>
         [JsonProperty("mute")]
         public bool Mute { get; set; }
+
         /// <summary>
-        /// If entry has LUIS integration
+        /// Entries for this type of testing
         /// </summary>
-        [JsonProperty("luis")]
-        public bool Luis { get; set; }
-        /// <summary>
-        /// Activity requested by the entry
-        /// </summary>
-        [JsonProperty("request")]
-        public Activity Request { get; set; }
-        /// <summary>
-        /// Activity response expected by the entry
-        /// </summary>
-        [JsonProperty("response")]
-        public Activity Response { get; set; }
-        /// <summary>
-        /// Assert value in string
-        /// </summary>
-        [JsonProperty("assert")]
-        public string Assert { get; set; }
+        [JsonProperty("steps")]
+        public List<TestSteps> Steps { get; set; }
     }
 }

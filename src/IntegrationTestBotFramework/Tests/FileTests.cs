@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using IntegrationTestBotFramework.Collections;
 using IntegrationTestBotFramework.Utils;
@@ -8,10 +9,10 @@ using Newtonsoft.Json;
 namespace IntegrationTestBotFramework.Tests
 {
     [TestClass]
-    public class DirectLineTests
+    public class FileTests
     {
         [TestMethod]
-        public async Task DirectLine_ShouldGetToken()
+        public async Task File_ShouldGetTests()
         {
             try
             {
@@ -21,11 +22,8 @@ namespace IntegrationTestBotFramework.Tests
                 // Deserialize to object
                 var data = JsonConvert.DeserializeObject<TestEntriesCollection>(path);
 
-                // Get token using secret from DirectLine in BotFramework panel
-                var token = API.uploadString<DirectLineAuth>(data.Secret, data.DirectLineGenerateTokenEndpoint, "").token;
-
                 // Assert
-                Assert.IsNotNull(token);
+                Assert.IsNotNull(data);
             }
             // Exception for file not found
             catch (System.IO.FileNotFoundException)
@@ -39,14 +37,28 @@ namespace IntegrationTestBotFramework.Tests
                 string message = "Error deserializing from the JSON file.";
                 Assert.Fail(message);
             }
-            // Overall exception
-            catch (Exception)
+            // Common exception
+            catch (Exception ex)
             {
-                string message = "Error getting token auth using the current DirectLine's secret.";
+                Assert.Fail(ex.Message);
+            }
+
+            await Task.CompletedTask;
+        }
+
+        [TestMethod]
+        public async Task File_Exists()
+        {
+            // Load entries from file
+            if (!File.Exists(Data.JSON))
+            {
+                // Message if doesn't exists
+                string message = "File not found: '" + Data.JSON + "'.";
                 Assert.Fail(message);
             }
 
             await Task.CompletedTask;
         }
+
     }
 }

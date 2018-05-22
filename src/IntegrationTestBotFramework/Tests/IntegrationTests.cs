@@ -34,14 +34,12 @@ namespace IntegrationTestBotFramework.Tests
                     string token, newToken, conversationId;
                     Activity latestResponse = new Activity();
 
-                    // Set vars for exception
+                    // Set casename for exception
                     casename = entry.Name;
 
                     // Just do Enabled cases
                     if (!entry.Mute)
                     {
-                        // Act for step
-
                         // 1 - Get token using secret from DirectLine in BotFramework panel
                         token = API.uploadString<DirectLineAuth>(data.Secret, data.DirectLineGenerateTokenEndpoint, "").token;
 
@@ -55,8 +53,10 @@ namespace IntegrationTestBotFramework.Tests
                         // 3 - Send an activity to the conversation with new token and conversationId
                         string directlineConversationActivitiesEndpoint = data.DirectLineConversationEndpoint + conversationId + "/activities";
 
-                        // Iterator for index
+                        // Iterator for index and step index for exception
                         var i = 0;
+
+                        // Foreach step in the case
                         foreach (TestSteps step in entry.Steps)
                         {
                             // Set var for exception data
@@ -106,7 +106,6 @@ namespace IntegrationTestBotFramework.Tests
                 string message = "\r\nCase name: " + casename + "\r\nStep: " + stepn;
                 Assert.Fail(message);
             }
-
 
             await Task.CompletedTask;
         }

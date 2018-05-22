@@ -19,16 +19,16 @@ namespace IntegrationTestBotFramework.Utils
         {
             string serializedResult = "";
 
-            /// Webclient
+            // Webclient
             using (var client = new WebClient())
             {
                 try
                 {
-                    /// Add headers
+                    // Add headers
                     client.Headers.Add("Content-Type", "application/json");
                     client.Headers.Add("Authorization", $"Bearer {bearer}");
 
-                    /// Upload string
+                    // Upload string
                     serializedResult = client.UploadString(url, Encoding.Default.GetString(Encoding.UTF8.GetBytes(serializedJson)));
                 }
                 catch (Exception e)
@@ -37,7 +37,7 @@ namespace IntegrationTestBotFramework.Utils
                 }
             }
 
-            /// Get result and return it as an object
+            // Get result and return it as an object
             return JsonConvert.DeserializeObject<T>(serializedResult);
         }
 
@@ -52,23 +52,23 @@ namespace IntegrationTestBotFramework.Utils
         {
             string serializedResult = "";
 
-            /// Webclient
+            // Webclient
             using (var client = new WebClient())
             {
-                /// Add headers
+                // Add headers
                 client.Headers.Add("Content-Type", "application/json");
                 client.Headers.Add("Authorization", $"Bearer {bearer}");
 
-                /// Download string
+                // Download string
                 serializedResult = client.DownloadString(url);
 
-                /// Fix for UTF8 when downloading string, strage characters 
-                /// appear if this is not done
+                // Fix for UTF8 when downloading string, strage characters 
+                // appear if this is not done
                 byte[] bytes = Encoding.Default.GetBytes(serializedResult);
                 serializedResult = Encoding.UTF8.GetString(bytes);
             }
 
-            /// Get result and return it as an object
+            // Get result and return it as an object
             return JsonConvert.DeserializeObject<T>(serializedResult);
         }
 

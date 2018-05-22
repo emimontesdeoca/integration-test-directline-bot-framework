@@ -30,7 +30,6 @@ namespace IntegrationTestBotFramework.Tests
                 // Flow: Arrange -> Act -> arrange -> assert
                 foreach (TestEntry entry in data.Entries)
                 {
-
                     // Arrange with current requested values
                     string token, newToken, conversationId;
                     Activity latestResponse = new Activity();
@@ -56,7 +55,7 @@ namespace IntegrationTestBotFramework.Tests
                         // 3 - Send an activity to the conversation with new token and conversationId
                         string directlineConversationActivitiesEndpoint = data.DirectLineConversationEndpoint + conversationId + "/activities";
 
-                        /// Iterator for index
+                        // Iterator for index
                         var i = 0;
                         foreach (TestSteps step in entry.Steps)
                         {
@@ -65,24 +64,23 @@ namespace IntegrationTestBotFramework.Tests
 
                             if (step.Request.Type == ActivityTypes.Message)
                             {
-                                /// Step
+                                // Step
                                 API.uploadString<DirectLineAuth>(newToken, directlineConversationActivitiesEndpoint, JsonConvert.SerializeObject(step.Request));
 
-                                /// Only assert if asset is not null        
+                                // Only assert if asset is not null        
                                 if (!String.IsNullOrEmpty(step.Assert))
                                 {
-                                    /// 4 - Get all activities, we get a List<activity> and a watermark
+                                    // 4 - Get all activities, we get a List<activity> and a watermark
                                     var getLastActivity = API.downloadString<ActivityResponse>(newToken, directlineConversationActivitiesEndpoint);
 
-                                    /// 5 - Get the latest activity which is the response we should be expecting
+                                    // 5 - Get the latest activity which is the response we should be expecting
                                     latestResponse = getLastActivity.activities[Int32.Parse(getLastActivity.watermark)];
 
-                                    /// 6 - Set the globals with the data
+                                    // 6 - Set the globals with the data
                                     var globals = new Utils.Globals { Request = step.Response, Response = latestResponse };
 
-                                    /// 7 - Evaluate
+                                    // 7 - Evaluate
                                     Assert.IsTrue(await CSharpScript.EvaluateAsync<bool>(step.Assert, globals: globals));
-
                                 }
                             }
                             i++;

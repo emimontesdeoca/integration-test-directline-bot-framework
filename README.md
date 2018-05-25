@@ -81,7 +81,7 @@ The json structure contains all the information necessary for the bot.
   "secret": "YourDirectLineChatSecret",
   "directlineGenerateTokenEndpoint": "https://directline.botframework.com/v3/directline/tokens/generate",
   "directlineConversationEndpoint": "https://directline.botframework.com/v3/directline/conversations/",
-  "entries":[
+  "entries": [
     {
       "name": "CaseName",
       "description": "CaseDescription",
@@ -89,35 +89,288 @@ The json structure contains all the information necessary for the bot.
       "steps": [
         {
           "request": {
-           // Request as activity
+           /* Request as activity */
           },
           "response": {
-            /// Response as activity
+            /* Response as activity*/
           },
-          "assert": /// Assert as boolean
+          "assert": /* Assert as string, have to return boolean */
         },
          {
           "request": {
-           // Request as activity
+           /* Request as activity */
           },
           "response": {
-            /// Response as activity
+             /* Response as activity*/
           },
-          "assert": /// Assert as boolean
+          "assert": /* Assert as string, have to return boolean */
         },
          {
           "request": {
-           // Request as activity
+           /* Request as activity */
           },
           "response": {
-            /// Response as activity
+             /* Response as activity*/
           },
-          "assert": /// Assert as boolean
+          "assert": /* Assert as string, have to return boolean */
         }
       ]
     }
-]
+  ]
+}
 ```
+
+## Building the JSON
+
+### Requirements
+
+1.  [Microsoft Bot Framework Emulator (V4 PREVIEW)](https://github.com/Microsoft/BotFramework-Emulator)
+2.  [DirectLine Secret](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-3.0#get-a-direct-line-secret)
+3.  [DirectLine token generation endpoint](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-3.0#generate-token), at the moment of this guide is `https://directline.botframework.com/v3/directline/tokens/generate`.
+4.  [DirectLine conversation creation endpoint](https://directline.botframework.com/v3/directline/conversations), at the moment of this guide is `https://directline.botframework.com/v3/directline/conversations`.
+5.  Any text editor to build the JSON.
+
+### Build the main structure of the JSON
+
+Here will be the main configuration for the JSON file.
+
+```json
+{
+  "secret": /* Secret from DirectLine */,
+  "directlineGenerateTokenEndpoint": /* DirectLine token endpoint from above */,
+  "directlineConversationEndpoint": /* DirectLine conversation token from above */,
+  "entries": [
+    /* Here will be the cases */
+  ]
+}
+```
+
+### Building an entry
+
+An entry contains some information about it: `name`, `description`, `mute` and `steps`.
+
+```
+{
+    "name": /* Here will be the case name */,
+    "description": /* Here will be the case description */,
+    "mute":  /* Here will be if the case is enabled or not*/,
+    "steps": [
+      {
+        "request": {
+          /* Request as activity */
+        },
+        "response": {
+          /* Response as activity*/
+        },
+        "assert": /* Assert as string, have to return boolean */
+      },
+        {
+        "request": {
+          /* Request as activity */
+        },
+        "response": {
+            /* Response as activity*/
+        },
+        "assert": /* Assert as string, have to return boolean */
+      },
+        {
+        "request": {
+          /* Request as activity */
+        },
+        "response": {
+            /* Response as activity*/
+        },
+        "assert": /* Assert as string, have to return boolean */
+      }
+    ]
+  }
+```
+
+### Filling the steps
+
+In order to fill the steps, we need to use the [Microsoft Bot Framework Emulator (V4 PREVIEW)](https://github.com/Microsoft/BotFramework-Emulator), using this application we can easily read all the serialized `Activity` that we are sending/receiving.
+
+#### Sending a message and getting the `Activity`
+
+Pick the message you want, to send and add it to the `request`.
+
+<a href="https://gyazo.com/043c789136942c028cd6d30799f9a0ec"><img align="center" src="https://i.gyazo.com/043c789136942c028cd6d30799f9a0ec.png" alt="https://gyazo.com/043c789136942c028cd6d30799f9a0ec" width="1141"/></a>
+
+So far the `step` looks like this:
+
+```
+{
+  "request": {
+    "channelData": {
+      "clientActivityId": "112983719237123798"
+    },
+    "entities": [
+      {
+        "requiresBotState": true,
+        "supportsListening": true,
+        "supportsTts": true,
+        "type": "ClientCapabilities"
+      }
+    ],
+    "from": {
+      "id": "default-user",
+      "name": "User"
+    },
+    "id": "7b2c9300-6002131313131317830d951",
+    "locale": "es",
+    "text": "Hola",
+    "textFormat": "plain",
+    "timestamp": "2018-05-25T10:00:40.747Z",
+    "type": "message"
+  },
+  "response": {},
+  "assert": ""
+}
+```
+
+#### Receiving a message and getting the `Activity`
+
+Pick the message that you will be comparing and add it to the `response`.
+
+**Message should be the last message you will receive, for example: if you ask `hi` and the bot returns `3` messages, you have to add the last one**
+
+<a href="https://gyazo.com/df58224b4205d014f0bc5fe921f6a5e4"><img  align="center" src="https://i.gyazo.com/df58224b4205d014f0bc5fe921f6a5e4.png" alt="https://gyazo.com/df58224b4205d014f0bc5fe921f6a5e4" width="1137"/></a>
+
+We have the respone now, o far the `step` looks like this:
+
+```
+{
+  "request": {
+    "channelData": {
+      "clientActivityId": "112983719237123798"
+    },
+    "entities": [
+      {
+        "requiresBotState": true,
+        "supportsListening": true,
+        "supportsTts": true,
+        "type": "ClientCapabilities"
+      }
+    ],
+    "from": {
+      "id": "default-user",
+      "name": "User"
+    },
+    "id": "7b2c9300-6002131313131317830d951",
+    "locale": "es",
+    "text": "Hola",
+    "textFormat": "plain",
+    "timestamp": "2018-05-25T10:00:40.747Z",
+    "type": "message"
+  },
+  "response": {
+    "attachments": [],
+    "channelId": "emulator",
+    "conversation": {
+      "id": "74a9db50-600asdasdadb28|livechat"
+    },
+    "entities": [],
+    "from": {
+      "id": "ba2e1c30-asdasd54fafccc92",
+      "name": "Bot"
+    },
+    "id": "7be079b0-6002-11e8-b284-ffdb7830d951",
+    "localTimestamp": "2018-05-25T11:00:41+01:00",
+    "locale": "es",
+    "membersAdded": [],
+    "membersRemoved": [],
+    "reactionsAdded": [],
+    "reactionsRemoved": [],
+    "recipient": {
+      "id": "default-user",
+      "role": "user"
+    },
+    "replyToId": "7b2c93asdasdasddb7830d951",
+    "serviceUrl": "https://aaae2b27.ngrok.io",
+    "text": "Selecciona una de las siguientes opciones:",
+    "timestamp": "2018-05-25T10:00:41.931Z",
+    "type": "message"
+  },
+  "assert": ""
+}
+```
+
+#### Building the assert
+
+In order to make the assert, the string evaluation has to return a `boolean`, a few examples:
+
+1.  `"Response.Attachments.Count >= 3"`
+2.  `"Response.Text == \"Message\""`
+3.  `"Response.Attachments[0].Text == "Hello""`
+
+In this case we will be comparing to the text, so our `assert` value will be:
+
+`"assert": Response.Text == \"Selecciona una de las siguientes opciones:\""`.
+
+In the end, our step will be like this:
+
+```
+{
+  "request": {
+    "channelData": {
+      "clientActivityId": "112983719237123798"
+    },
+    "entities": [
+      {
+        "requiresBotState": true,
+        "supportsListening": true,
+        "supportsTts": true,
+        "type": "ClientCapabilities"
+      }
+    ],
+    "from": {
+      "id": "default-user",
+      "name": "User"
+    },
+    "id": "7b2c9300-6002131313131317830d951",
+    "locale": "es",
+    "text": "Hola",
+    "textFormat": "plain",
+    "timestamp": "2018-05-25T10:00:40.747Z",
+    "type": "message"
+  },
+  "response": {
+    "attachments": [],
+    "channelId": "emulator",
+    "conversation": {
+      "id": "74a9db50-6asdasdasdb28|livechat"
+    },
+    "entities": [],
+    "from": {
+      "id": "ba2e1c30-5360-1asdasdasdfafccc92",
+      "name": "Bot"
+    },
+    "id": "7be079b0-60asdasdasddb7830d951",
+    "localTimestamp": "2018-05-25T11:00:41+01:00",
+    "locale": "es",
+    "membersAdded": [],
+    "membersRemoved": [],
+    "reactionsAdded": [],
+    "reactionsRemoved": [],
+    "recipient": {
+      "id": "default-user",
+      "role": "user"
+    },
+    "replyToId": "7b2c9300-60asdasdasdffdb7830d951",
+    "serviceUrl": "https://aaae2b27.ngrok.io",
+    "text": "Selecciona una de las siguientes opciones:",
+    "timestamp": "2018-05-25T10:00:41.931Z",
+    "type": "message"
+  },
+  "assert": Response.Text == \"Selecciona una de las siguientes opciones:\""
+}
+```
+
+So with this example, you can add more steps to the main JSON and make a flow conversation.
+
+#### Not asserting the message
+
+If you just want to send a message without testing it, all you have to do is to leave empty the `assert`.
 
 ## Contributing
 

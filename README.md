@@ -2,6 +2,29 @@
 
 This repository has a test solution in Visual Studio that does integration test for Microsoft's Bot Framework using the DirectLine channel.
 
+## Table of contents
+
+- [Working flow](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#working-flow)
+- [Project tree](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#project-tree)
+  - [Auth](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#auth)
+  - [Collections](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#collections)
+  - [Objects](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#objects)
+  - [Tests](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#tests)
+  - [Utils](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#utils)
+- [JSON structure](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#json-structure)
+- [Building the JSON](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#working-flow)
+  - [Requirements](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#requirements)
+  - [Build the main structure of the JSON](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#build-the-main-structure-of-the-json)
+  - [Building an entry](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#building-an-entry)
+  - [Filling the steps](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#filling-the-steps)
+    - [Sending a message and getting the Activity](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#sending-a-message-and-getting-the-activity)
+    - [Receiving a message and getting the Activity](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#receiving-a-message-and-getting-the-activity)
+    - [Building the assert](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#building-the-assert)
+    - [Not asserting the message](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#filling-the-steps)
+- [Contributing](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#contributing)
+- [License](https://github.com/emimontesdeoca/integration-test-directline-bot-framework#license)
+
+
 ## Working flow
 
 [![https://gyazo.com/1203e163e730af4f1b3dcbf2af649a05](https://i.gyazo.com/1203e163e730af4f1b3dcbf2af649a05.png)](https://gyazo.com/1203e163e730af4f1b3dcbf2af649a05)

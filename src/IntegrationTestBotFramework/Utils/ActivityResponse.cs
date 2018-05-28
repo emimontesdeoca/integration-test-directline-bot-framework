@@ -1,4 +1,5 @@
 ﻿using Microsoft.Bot.Connector;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace IntegrationTestBotFramework.Utils
@@ -11,10 +12,12 @@ namespace IntegrationTestBotFramework.Utils
         /// <summary>
         /// Activities list
         /// </summary>
-        public List<Activity> activities { get; set; }
+        [JsonProperty("activities")]
+        public List<Activity> Activities { get; set; }
         /// <summary>
         /// Total activities
         /// </summary>
-        public string watermark { get; set; }
+        [JsonProperty("watermark")]
+        public string Watermark { get; set; }
     }
 }

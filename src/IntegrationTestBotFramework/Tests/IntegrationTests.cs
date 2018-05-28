@@ -74,7 +74,7 @@ namespace IntegrationTestBotFramework.Tests
                                     var getLastActivity = API.downloadString<ActivityResponse>(newToken, directlineConversationActivitiesEndpoint);
 
                                     // 5 - Get the latest activity which is the response we should be expecting
-                                    latestResponse = getLastActivity.activities[Int32.Parse(getLastActivity.watermark)];
+                                    latestResponse = getLastActivity.Activities[Int32.Parse(getLastActivity.Watermark)];
 
                                     // 6 - Set the globals with the data
                                     var globals = new Utils.Globals { Request = step.Response, Response = latestResponse };
